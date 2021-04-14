@@ -9,13 +9,16 @@ public:
 	void moveRight(float pixels);
 	SDL_Rect *getRect();
 	SDL_Rect *getFootRect();
+	SDL_Rect *getBodyRect();
 	double getX();
 	void update(float deltaTime);
 	void jump();
-	void setFloor();
+	void setFloor(int y);
+	void setWall(int x, int cameraX);
 private:
 	double x, y, vy, dy;
 	SDL_Rect rect;
 	SDL_Rect footRect;
+	SDL_Rect bodyRect;
 	bool isFloor;
 };

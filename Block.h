@@ -1,11 +1,13 @@
 #pragma once
+#include <SDL.h>
 
 class Block
 {
 public:
 	Block(int x, int y);
-	int getX();
-	int getY();
+	SDL_Rect *getRect();
+	double getX();
 private:
-	int x, y;
+	double x, y;
+	SDL_Rect rect;
 };

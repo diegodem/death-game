@@ -5,6 +5,7 @@ PlayScene::PlayScene(SDL_Renderer *renderer)
 	nextScene = -1;
 	this->renderer = renderer;
 	loadMedia();
+	loadBlocks();
 	backgroundRect = { 0, 0, 1024, 192 };
 	camera = Camera();
 	deltaTime.start();
@@ -26,8 +27,10 @@ void PlayScene::loadBlocks()
 {
 	for (int i = 0; i < 64; i++)
 	{
-		blocks.push_back(Block(160, i * 16));
+		blocks.push_back(Block(i * 16, 160));
 	}
+	blocks.push_back(Block(160, 144));
+	blocks.push_back(Block(48, 144));
 }
 
 void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, const Uint8 *keyboardState)
@@ -44,17 +47,34 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 	{
 		player.moveRight(deltaTime.getTime() * 50);
 
-		if (player.getX() >= 64)
-		{
-			camera.moveRight(deltaTime.getTime() * 50);
-		}
-		player.getRect()->x = (int)round(player.getX() - camera.getX());
 	}
 	backgroundRect.x = - camera.getX();
 
 	player.update(deltaTime.getTime());
 
+
 	enemy.getRect()->x = (int)round(enemy.getX() - camera.getX());
+
+	for (int i = 0; i < blocks.size(); i++)
+	{
+		blocks[i].getRect()->x = (int)round(blocks[i].getX() - camera.getX());
+		if (checkCollision(player.getFootRect(), blocks[i].getRect()))
+		{
+			player.setFloor(blocks[i].getRect()->y);
+		}
+		if (checkCollision(player.getBodyRect(), blocks[i].getRect()))
+		{
+			player.setWall(blocks[i].getX(), camera.getX());
+		}
+	}
+
+	if (player.getRect()->x >= 64)
+	{
+		camera.moveRight(deltaTime.getTime() * 50);
+	}
+	player.getRect()->x = (int)round(player.getX() - camera.getX());
+	player.getFootRect()->x = (int)round(player.getX() - camera.getX()) + 2;
+	player.getBodyRect()->x = (int)round(player.getX() - camera.getX()) + 1;
 
 	deltaTime.start();
 }
@@ -67,7 +87,13 @@ void PlayScene::draw()
 	SDL_RenderCopy(renderer, backgroundTexture, NULL, &backgroundRect);
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
 	SDL_RenderDrawRect(renderer, player.getRect());
+	SDL_RenderDrawRect(renderer, player.getFootRect());
+	SDL_RenderDrawRect(renderer, player.getBodyRect());
 	SDL_RenderDrawRect(renderer, enemy.getRect());
+	for (int i = 0; i < blocks.size(); i++)
+	{
+		SDL_RenderDrawRect(renderer, blocks[i].getRect());
+	}
 	
 	SDL_RenderPresent(renderer);
 }
