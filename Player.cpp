@@ -17,6 +17,11 @@ void Player::moveRight(float pixels)
 	x += pixels;
 }
 
+void Player::moveLeft(float pixels)
+{
+	x -= pixels;
+}
+
 SDL_Rect *Player::getRect()
 {
 	return &rect;
@@ -74,9 +79,9 @@ void Player::setWall(int x)
 {
 	if (x > this->x)
 	{
-		this->x = (double)x - 14.;
+		this->x = (double)x - 15.;
 	}
 	else {
-		this->x = (double)x + 14.;
+		this->x = (double)x + 15.;
 	}
 }

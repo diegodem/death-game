@@ -51,7 +51,26 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 
 	}
 
+	if (keyboardState[SDL_SCANCODE_A])
+	{
+		player.moveLeft(deltaTime.getTime() * 50);
+		movePlayer = true;
+
+	}
+
 	player.update(deltaTime.getTime());
+
+	
+	camera.setPos(player.getX());
+	printf("%f\n", player.getX());
+
+	enemy.getRect()->x = (int)round(enemy.getX() - camera.getX());
+
+	player.getRect()->x = (int)round(player.getX() - camera.getX());
+
+	player.getFootRect()->x = (int)round(player.getX() - camera.getX()) + 2;
+	player.getBodyRect()->x = (int)round(player.getX() - camera.getX()) + 1;
+	backgroundRect.x = -camera.getX();
 
 	for (int i = 0; i < blocks.size(); i++)
 	{
@@ -63,25 +82,23 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 		if (checkCollision(player.getBodyRect(), blocks[i].getRect()))
 		{
 			player.setWall(blocks[i].getX());
+			printf("Wall set\n");
+			camera.setPos(player.getX());
+			printf("%f\n", player.getX());
+
+			enemy.getRect()->x = (int)round(enemy.getX() - camera.getX());
+
+			player.getRect()->x = (int)round(player.getX() - camera.getX());
+
+			player.getFootRect()->x = (int)round(player.getX() - camera.getX()) + 2;
+			player.getBodyRect()->x = (int)round(player.getX() - camera.getX()) + 1;
+			backgroundRect.x = -camera.getX();
+			for (int i = 0; i < blocks.size(); i++)
+			{
+				blocks[i].getRect()->x = (int)round(blocks[i].getX() - camera.getX());
+			}
 		}
 	}
-	
-	camera.setPos(player.getX());
-
-	/*if ((int)round(player.getX() - camera.getX()) >= 64)
-	{
-		camera.moveRight(deltaTime.getTime() * 50);
-	}*/
-
-	enemy.getRect()->x = (int)round(enemy.getX() - camera.getX());
-
-	player.getRect()->x = (int)round(player.getX() - camera.getX());
-
-	player.getFootRect()->x = (int)round(player.getX() - camera.getX()) + 2;
-	player.getBodyRect()->x = (int)round(player.getX() - camera.getX()) + 1;
-	backgroundRect.x = -camera.getX();
-
-	
 
 	deltaTime.start();
 }

@@ -7,6 +7,7 @@ class Player
 public:
 	Player();
 	void moveRight(float pixels);
+	void moveLeft(float pixels);
 	SDL_Rect *getRect();
 	SDL_Rect *getFootRect();
 	SDL_Rect *getBodyRect();
