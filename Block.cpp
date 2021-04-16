@@ -17,3 +17,8 @@ double Block::getX()
 	return x;
 }
 
+double Block::getY()
+{
+	return y;
+}
+

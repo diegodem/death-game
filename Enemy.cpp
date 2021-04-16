@@ -2,7 +2,7 @@
 
 Enemy::Enemy()
 {
-	x = 256;
+	x = 304;
 	y = 128;
 	rect = { (int)x, (int)y, 16, 32 };
 }

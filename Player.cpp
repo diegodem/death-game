@@ -42,6 +42,11 @@ double Player::getX()
 	return x;
 }
 
+double Player::getY()
+{
+	return y;
+}
+
 void Player::update(float deltaTime)
 {
 	
@@ -75,13 +80,19 @@ void Player::setFloor(int y)
 	isFloor = true;
 }
 
-void Player::setWall(int x)
+void Player::setWall(int x, int y)
 {
-	if (x > this->x)
+	if (x > this->x + 12)
 	{
 		this->x = (double)x - 15.;
 	}
-	else {
+	else if (x < this->x - 12) {
 		this->x = (double)x + 15.;
+	}
+
+	else
+	{
+		vy = 0;
+		this->y = y + 16;
 	}
 }

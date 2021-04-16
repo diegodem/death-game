@@ -12,10 +12,11 @@ public:
 	SDL_Rect *getFootRect();
 	SDL_Rect *getBodyRect();
 	double getX();
+	double getY();
 	void update(float deltaTime);
 	void jump();
 	void setFloor(int y);
-	void setWall(int x);
+	void setWall(int x, int y);
 private:
 	double x, y, vy, dy;
 	SDL_Rect rect;
