@@ -14,7 +14,7 @@ public:
 	void update(float deltaTime);
 	void jump();
 	void setFloor(int y);
-	void setWall(int x, int cameraX);
+	void setWall(int x);
 private:
 	double x, y, vy, dy;
 	SDL_Rect rect;

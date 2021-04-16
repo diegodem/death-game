@@ -24,4 +24,5 @@ private:
 	Player player;
 	Enemy enemy;
 	std::vector<Block> blocks;
+	bool movePlayer;
 };

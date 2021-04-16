@@ -35,6 +35,7 @@ void PlayScene::loadBlocks()
 
 void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, const Uint8 *keyboardState)
 {
+	movePlayer = false;
 	for (int i = 0; i < keysPressed.size(); i++)
 	{
 		if (keysPressed[i] == SDLK_SPACE)
@@ -46,14 +47,11 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 	if (keyboardState[SDL_SCANCODE_D])
 	{
 		player.moveRight(deltaTime.getTime() * 50);
+		movePlayer = true;
 
 	}
-	backgroundRect.x = - camera.getX();
 
 	player.update(deltaTime.getTime());
-
-
-	enemy.getRect()->x = (int)round(enemy.getX() - camera.getX());
 
 	for (int i = 0; i < blocks.size(); i++)
 	{
@@ -64,17 +62,26 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 		}
 		if (checkCollision(player.getBodyRect(), blocks[i].getRect()))
 		{
-			player.setWall(blocks[i].getX(), camera.getX());
+			player.setWall(blocks[i].getX());
 		}
 	}
+	
+	camera.setPos(player.getX());
 
-	if (player.getRect()->x >= 64)
+	/*if ((int)round(player.getX() - camera.getX()) >= 64)
 	{
 		camera.moveRight(deltaTime.getTime() * 50);
-	}
+	}*/
+
+	enemy.getRect()->x = (int)round(enemy.getX() - camera.getX());
+
 	player.getRect()->x = (int)round(player.getX() - camera.getX());
+
 	player.getFootRect()->x = (int)round(player.getX() - camera.getX()) + 2;
 	player.getBodyRect()->x = (int)round(player.getX() - camera.getX()) + 1;
+	backgroundRect.x = -camera.getX();
+
+	
 
 	deltaTime.start();
 }

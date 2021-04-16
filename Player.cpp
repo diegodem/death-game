@@ -8,7 +8,7 @@ Player::Player()
 	dy = 800;
 	rect = { (int)x, (int)y, 16, 32 };
 	footRect = { (int)x + 2, (int)y + 16, 12, 16 };
-	bodyRect = { (int)x + 1, (int)y, 14, 24 };
+	bodyRect = { (int)x + 1, (int)y, 14, 30 };
 	isFloor = false;
 }
 
@@ -70,17 +70,13 @@ void Player::setFloor(int y)
 	isFloor = true;
 }
 
-void Player::setWall(int x, int cameraX)
+void Player::setWall(int x)
 {
 	if (x > this->x)
 	{
-		this->x = (double)x - 16.;
+		this->x = (double)x - 14.;
 	}
 	else {
-		this->x = (double)x + 16.;
+		this->x = (double)x + 14.;
 	}
-
-	rect.x = (int)this->x - cameraX;
-	footRect.x = (int)this->x + 2 - cameraX;
-	bodyRect.x = (int)this->x + 1 - cameraX;
 }
