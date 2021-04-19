@@ -61,13 +61,21 @@ void Player::update(float deltaTime)
 	rect.y = (int)y;
 	footRect.y = (int)y + 16;
 	bodyRect.y = (int)y;
-	isFloor = false;
+	if (vy > (double)deltaTime * 10000)
+	{
+		isFloor = false;
+	}
+	
 }
 
 void Player::jump()
 {
-	y -= 1;
-	vy = -300;
+	if (isFloor)
+	{
+		y -= 1;
+		vy = -300;
+		isFloor = false;
+	}
 }
 
 void Player::setFloor(int y)
