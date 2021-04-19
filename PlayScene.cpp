@@ -74,7 +74,7 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 	player.getBodyRect()->x = (int)round(player.getX() - camera.getX()) + 1;
 
 	player.getRect()->y = (int)round(player.getY());
-	player.getFootRect()->y = (int)round(player.getY() + 16.);
+	player.getFootRect()->y = (int)round(player.getY() + 8.);
 	player.getBodyRect()->y = (int)round(player.getY());
 
 	backgroundRect.x = -camera.getX();
@@ -98,7 +98,7 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 			player.getBodyRect()->x = (int)round(player.getX() - camera.getX()) + 1;
 
 			player.getRect()->y = (int)round(player.getY());
-			player.getFootRect()->y = (int)round(player.getY() + 16.);
+			player.getFootRect()->y = (int)round(player.getY() + 8.);
 			player.getBodyRect()->y = (int)round(player.getY());
 
 			backgroundRect.x = -camera.getX();

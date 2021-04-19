@@ -3,12 +3,12 @@
 Player::Player()
 {
 	x = 16;
-	y = 128;
+	y = 144;
 	vy = 0;
 	dy = 800;
-	rect = { (int)x, (int)y, 16, 32 };
-	footRect = { (int)x + 2, (int)y + 16, 12, 16 };
-	bodyRect = { (int)x + 1, (int)y, 14, 30 };
+	rect = { (int)x, (int)y, 13, 16 };
+	footRect = { (int)x + 2, (int)y + 8, 9, 8 };
+	bodyRect = { (int)x + 1, (int)y, 11, 14 };
 	isFloor = false;
 }
 
@@ -59,7 +59,7 @@ void Player::update(float deltaTime)
 	}*/
 
 	rect.y = (int)y;
-	footRect.y = (int)y + 16;
+	footRect.y = (int)y + 8;
 	bodyRect.y = (int)y;
 	if (vy > (double)deltaTime * 10000)
 	{
@@ -80,9 +80,9 @@ void Player::jump()
 
 void Player::setFloor(int y)
 {
-	this->y = (double)y - 32.;
+	this->y = (double)y - 16.;
 	rect.y = (int)this->y;
-	footRect.y = (int)this->y + 16;
+	footRect.y = (int)this->y + 8;
 	bodyRect.y = (int)this->y;
 	vy = 0;
 	isFloor = true;
@@ -90,9 +90,9 @@ void Player::setFloor(int y)
 
 void Player::setWall(int x, int y)
 {
-	if (x > this->x + 13)
+	if (x > this->x + 10)
 	{
-		this->x = (double)x - 15.;
+		this->x = (double)x - 12.;
 	}
 	else if (x < this->x - 13) {
 		this->x = (double)x + 15.;
