@@ -82,17 +82,17 @@ void Player::setFloor(int y)
 
 void Player::setWall(int x, int y)
 {
-	if (x > this->x + 12)
+	if (x > this->x + 13)
 	{
 		this->x = (double)x - 15.;
 	}
-	else if (x < this->x - 12) {
+	else if (x < this->x - 13) {
 		this->x = (double)x + 15.;
 	}
 
 	else
 	{
 		vy = 0;
-		this->y = y + 16;
+		this->y = y + 16.;
 	}
 }
