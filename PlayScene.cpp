@@ -73,7 +73,6 @@ void PlayScene::loadBlocks()
 		if (x == 1)
 		{
 			blocks.push_back(Block(i * 16, j * 16));
-			printf("%d %d\n", i * 16, j * 16);
 		}
 		i++;
 		if (x == 9)
@@ -82,8 +81,6 @@ void PlayScene::loadBlocks()
 			i = 0;
 		}
 	}
-
-	printf("%d\n", i);
 
 
 }
@@ -158,7 +155,7 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 	enemy.getRect()->x = (int)round(enemy.getX() - camera.getX());
 
 	player.getRect()->x = (int)round(player.getX() - camera.getX());
-	player.getFootRect()->x = (int)round(player.getX() - camera.getX()) + 2;
+	player.getFootRect()->x = (int)round(player.getX() - camera.getX()) + 3;
 	player.getBodyRect()->x = (int)round(player.getX() - camera.getX()) + 1;
 
 	player.getRect()->y = (int)round(player.getY());
@@ -182,7 +179,7 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 			enemy.getRect()->x = (int)round(enemy.getX() - camera.getX());
 
 			player.getRect()->x = (int)round(player.getX() - camera.getX());
-			player.getFootRect()->x = (int)round(player.getX() - camera.getX()) + 2;
+			player.getFootRect()->x = (int)round(player.getX() - camera.getX()) + 3;
 			player.getBodyRect()->x = (int)round(player.getX() - camera.getX()) + 1;
 
 			player.getRect()->y = (int)round(player.getY());

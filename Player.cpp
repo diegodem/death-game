@@ -3,11 +3,11 @@
 Player::Player()
 {
 	x = 16;
-	y = 144;
+	y = 96;
 	vy = 0;
 	dy = 800;
 	rect = { (int)x, (int)y, 13, 16 };
-	footRect = { (int)x + 2, (int)y + 8, 9, 8 };
+	footRect = { (int)x + 3, (int)y + 8, 7, 8 };
 	bodyRect = { (int)x + 1, (int)y, 11, 14 };
 	isFloor = false;
 	currentFrame = 0;
@@ -53,6 +53,8 @@ void Player::update(float deltaTime)
 	
 	y += vy * (double)deltaTime;
 	vy += dy * (double)deltaTime;
+
+	printf("%f\n", y);
 	/*if (y >= 128.f)
 	{
 		y = 128.f;
@@ -111,7 +113,7 @@ void Player::setWall(int x, int y)
 		setCurrentFrame(0);
 		frameTimer.start();
 	}
-	else if (x < this->x - 13) {
+	else if (x < this->x - 12) {
 		this->x = (double)x + 15.;
 		setCurrentFrame(2);
 		frameTimer.start();
