@@ -108,9 +108,13 @@ void Player::setWall(int x, int y)
 	if (x > this->x + 10)
 	{
 		this->x = (double)x - 12.;
+		setCurrentFrame(0);
+		frameTimer.start();
 	}
 	else if (x < this->x - 13) {
 		this->x = (double)x + 15.;
+		setCurrentFrame(2);
+		frameTimer.start();
 	}
 
 	else
