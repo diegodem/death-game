@@ -50,14 +50,40 @@ bool PlayScene::loadMedia()
 
 void PlayScene::loadBlocks()
 {
-	for (int i = 0; i < 64; i++)
+	/*for (int i = 0; i < 64; i++)
 	{
 		blocks.push_back(Block(i * 16, 160));
 	}
 	blocks.push_back(Block(160, 144));
 	blocks.push_back(Block(48, 144));
 
-	blocks.push_back(Block(288, 96));
+	blocks.push_back(Block(288, 96));*/
+	int i = 0, j = 0, x;
+
+	map.open("Maps/mapa.map");
+	if (!map.is_open())
+	{
+		printf("Failed to load map file!\n");
+	}
+
+
+	while (map >> x)
+	{
+		
+		if (x == 1)
+		{
+			blocks.push_back(Block(i * 16, j * 16));
+			printf("%d %d\n", i * 16, j * 16);
+		}
+		i++;
+		if (x == 9)
+		{
+			j++;
+			i = 0;
+		}
+	}
+
+	printf("%d\n", i);
 
 
 }
@@ -75,7 +101,7 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 	}
 	if (keyboardState[SDL_SCANCODE_D])
 	{
-		player.moveRight(deltaTime.getTime() * 50);
+		player.moveRight(deltaTime.getTime() * 75);
 		movePlayer = true;
 		if (player.getCurrentFrame() != 0 && player.getCurrentFrame() != 1)
 		{
@@ -91,7 +117,7 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 
 	if (keyboardState[SDL_SCANCODE_A])
 	{
-		player.moveLeft(deltaTime.getTime() * 50);
+		player.moveLeft(deltaTime.getTime() * 75);
 		movePlayer = true;
 		if (player.getCurrentFrame() != 2 && player.getCurrentFrame() != 3)
 		{

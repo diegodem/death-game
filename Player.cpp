@@ -88,7 +88,7 @@ void Player::jump()
 	if (isFloor)
 	{
 		y -= 1;
-		vy = -300;
+		vy = -200;
 		isFloor = false;
 	}
 }

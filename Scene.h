@@ -8,6 +8,9 @@
 #include <algorithm>
 #include "SceneList.h"
 #include "Timer.h"
+#include <iostream>
+#include <fstream>
+#include <string>
 
 class Scene
 {

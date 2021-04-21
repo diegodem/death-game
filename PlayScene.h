@@ -26,4 +26,5 @@ private:
 	Enemy enemy;
 	std::vector<Block> blocks;
 	bool movePlayer;
+	std::ifstream map;
 };
