@@ -10,6 +10,7 @@ Player::Player()
 	footRect = { (int)x + 2, (int)y + 8, 9, 8 };
 	bodyRect = { (int)x + 1, (int)y, 11, 14 };
 	isFloor = false;
+	currentFrame = 0;
 }
 
 void Player::moveRight(float pixels)
@@ -64,6 +65,20 @@ void Player::update(float deltaTime)
 	if (vy > (double)deltaTime * 10000)
 	{
 		isFloor = false;
+
+	}
+
+	if (!isFloor)
+	{
+		if (getCurrentFrame() == 2 || getCurrentFrame() == 3)
+		{
+			setCurrentFrame(3);
+		}
+		else
+		{
+			setCurrentFrame(1);
+		}
+		frameTimer.start();
 	}
 	
 }
@@ -103,4 +118,19 @@ void Player::setWall(int x, int y)
 		vy = 0;
 		this->y = y + 16.;
 	}
+}
+
+int Player::getCurrentFrame()
+{
+	return currentFrame;
+}
+
+void Player::setCurrentFrame(int currentFrame)
+{
+	this->currentFrame = currentFrame;
+}
+
+Timer *Player::getFrameTimer()
+{
+	return &frameTimer;
 }

@@ -20,6 +20,31 @@ bool PlayScene::loadMedia()
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
+	playerTextures[0] = loadTexture("Sprites/player_1.png");
+	if (playerTextures[0] == NULL)
+	{
+		printf("Failed to load texture image!\n");
+		success = false;
+	}
+	playerTextures[1] = loadTexture("Sprites/player_2.png");
+	if (playerTextures[1] == NULL)
+	{
+		printf("Failed to load texture image!\n");
+		success = false;
+	}
+	playerTextures[2] = loadTexture("Sprites/player_3.png");
+	if (playerTextures[2] == NULL)
+	{
+		printf("Failed to load texture image!\n");
+		success = false;
+	}
+	playerTextures[3] = loadTexture("Sprites/player_4.png");
+	if (playerTextures[3] == NULL)
+	{
+		printf("Failed to load texture image!\n");
+		success = false;
+	}
+
 	return success;
 }
 
@@ -52,6 +77,15 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 	{
 		player.moveRight(deltaTime.getTime() * 50);
 		movePlayer = true;
+		if (player.getCurrentFrame() != 0 && player.getCurrentFrame() != 1)
+		{
+			player.setCurrentFrame(0);
+		}
+		if (player.getFrameTimer()->getTime() > 0.1f)
+		{
+			player.setCurrentFrame((player.getCurrentFrame() + 1) % 2);
+			player.getFrameTimer()->start();
+		}
 
 	}
 
@@ -59,7 +93,35 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 	{
 		player.moveLeft(deltaTime.getTime() * 50);
 		movePlayer = true;
+		if (player.getCurrentFrame() != 2 && player.getCurrentFrame() != 3)
+		{
+			player.setCurrentFrame(2);
+		}
+		if (player.getFrameTimer()->getTime() > 0.1f)
+		{
+			if (player.getCurrentFrame() == 2)
+			{
+				player.setCurrentFrame(3);
+			}
+			else
+			{
+				player.setCurrentFrame(2);
+			}
+			player.getFrameTimer()->start();
+		}
 
+	}
+	if (!movePlayer)
+	{
+		player.getFrameTimer()->start();
+		if ( player.getCurrentFrame() == 3)
+		{
+			player.setCurrentFrame(2);
+		}
+		else if (player.getCurrentFrame() == 1)
+		{
+			player.setCurrentFrame(0);
+		}
 	}
 
 	player.update(deltaTime.getTime());
@@ -122,6 +184,7 @@ void PlayScene::draw()
 	SDL_RenderDrawRect(renderer, player.getRect());
 	SDL_RenderDrawRect(renderer, player.getFootRect());
 	SDL_RenderDrawRect(renderer, player.getBodyRect());
+	SDL_RenderCopy(renderer, playerTextures[player.getCurrentFrame()], NULL, player.getRect());
 	SDL_RenderDrawRect(renderer, enemy.getRect());
 	for (int i = 0; i < blocks.size(); i++)
 	{

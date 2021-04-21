@@ -18,6 +18,7 @@ public:
 	bool checkCollision(SDL_Rect *rectA, SDL_Rect *rectB);
 private:
 	SDL_Texture *backgroundTexture = NULL;
+	SDL_Texture *playerTextures[4] = { 0 };
 	SDL_Rect backgroundRect;
 	Camera camera;
 	Timer deltaTime;

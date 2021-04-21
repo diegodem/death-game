@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <stdio.h>
+#include "Timer.h"
 
 class Player
 {
@@ -17,10 +18,15 @@ public:
 	void jump();
 	void setFloor(int y);
 	void setWall(int x, int y);
+	int getCurrentFrame();
+	void setCurrentFrame(int currentFrame);
+	Timer *getFrameTimer();
 private:
 	double x, y, vy, dy;
 	SDL_Rect rect;
 	SDL_Rect footRect;
 	SDL_Rect bodyRect;
 	bool isFloor;
+	int currentFrame;
+	Timer frameTimer;
 };
