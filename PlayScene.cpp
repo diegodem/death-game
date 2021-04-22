@@ -44,6 +44,12 @@ bool PlayScene::loadMedia()
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
+	blockTexture = loadTexture("Sprites/block2.png");
+	if (blockTexture == NULL)
+	{
+		printf("Failed to load texture image!\n");
+		success = false;
+	}
 
 	return success;
 }
@@ -60,7 +66,7 @@ void PlayScene::loadBlocks()
 	blocks.push_back(Block(288, 96));*/
 	int i = 0, j = 0, x;
 
-	map.open("Maps/mapa.map");
+	map.open("Maps/map2.map");
 	if (!map.is_open())
 	{
 		printf("Failed to load map file!\n");
@@ -211,7 +217,8 @@ void PlayScene::draw()
 	SDL_RenderDrawRect(renderer, enemy.getRect());
 	for (int i = 0; i < blocks.size(); i++)
 	{
-		SDL_RenderDrawRect(renderer, blocks[i].getRect());
+		//SDL_RenderDrawRect(renderer, blocks[i].getRect());
+		SDL_RenderCopy(renderer, blockTexture, NULL, blocks[i].getRect());
 	}
 	
 	SDL_RenderPresent(renderer);
