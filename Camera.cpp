@@ -18,7 +18,7 @@ void Camera::moveLeft(float pixels)
 
 void Camera::setPos(double pixels)
 {
-	x = std::max(0, (int)round(pixels) - 64);
+	x = std::max(0, (int)round(pixels) - 96);
 }
 
 double Camera::getX()

@@ -155,6 +155,8 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 
 	player.update(deltaTime.getTime());
 
+	enemy.update(deltaTime.getTime());
+
 	
 	camera.setPos(player.getX());
 

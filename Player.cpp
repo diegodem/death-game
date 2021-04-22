@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-	x = 16;
+	x = 64;
 	y = 96;
 	vy = 0;
 	dy = 800;

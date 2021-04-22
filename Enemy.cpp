@@ -2,8 +2,8 @@
 
 Enemy::Enemy()
 {
-	x = 304;
-	y = 128;
+	x = 16;
+	y = 80;
 	rect = { (int)x, (int)y, 16, 32 };
 }
 
@@ -15,4 +15,10 @@ SDL_Rect *Enemy::getRect()
 double Enemy::getX()
 {
 	return x;
+}
+
+void Enemy::update(float deltaTime)
+{
+	x += 25 * deltaTime;
+	rect.x = (int)x;
 }
