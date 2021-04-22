@@ -9,6 +9,7 @@ PlayScene::PlayScene(SDL_Renderer *renderer)
 	backgroundRect = { 0, 0, 1024, 192 };
 	camera = Camera();
 	deltaTime.start();
+	setInterrupt = -1;
 }
 
 bool PlayScene::loadMedia()
@@ -87,6 +88,17 @@ void PlayScene::loadBlocks()
 			i = 0;
 		}
 	}
+
+	transportations.push_back(Transportation({ 256, 80, 16, 16 }, 304, 128, 1, false));
+	transportations.push_back(Transportation({ 832, 16, 16, 16 }, 1056, 0, 0, true));
+	transportations.push_back(Transportation({ 960, 80, 16, 16 }, 768, 64, 1, true));
+	transportations.push_back(Transportation({ 1280, 112, 16, 16 }, 1120, 144, 1, true));
+	transportations.push_back(Transportation({ 1696, 96, 16, 16 }, 1936, 80, 0, true));
+	transportations.push_back(Transportation({ 1872, 144, 16, 16 }, 1586, 128, 1, true));
+	transportations.push_back(Transportation({ 1872, 144, 16, 16 }, 1586, 128, 1, true));
+	transportations.push_back(Transportation({ 2752, 48, 16, 16 }, 2560, 32, 1, true));
+	transportations.push_back(Transportation({ 3072, 32, 16, 16 }, 3680, 80, 0, true));
+	transportations.push_back(Transportation({ 3328, 96, 16, 16 }, 3152, 80, 1, true));
 
 
 }
@@ -202,6 +214,16 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 		}
 	}
 
+	for (int i = 0; i < transportations.size(); i++)
+	{
+		transportations[i].getRect()->x = (int)(transportations[i].getX() - camera.getX());
+		if (((!transportations[i].isTrigger() && checkCollision(transportations[i].getRect(), enemy.getRect())) || (transportations[i].isTrigger() && checkCollision(transportations[i].getRect(), player.getRect()))) && setInterrupt != i)
+		{
+			enemy.setPosition(transportations[i].getDestX(), transportations[i].getDestY(), transportations[i].getDirection());
+			setInterrupt = i;
+		}
+	}
+
 	deltaTime.start();
 }
 
@@ -219,8 +241,13 @@ void PlayScene::draw()
 	SDL_RenderDrawRect(renderer, enemy.getRect());
 	for (int i = 0; i < blocks.size(); i++)
 	{
-		//SDL_RenderDrawRect(renderer, blocks[i].getRect());
-		SDL_RenderCopy(renderer, blockTexture, NULL, blocks[i].getRect());
+		SDL_RenderDrawRect(renderer, blocks[i].getRect());
+		//SDL_RenderCopy(renderer, blockTexture, NULL, blocks[i].getRect());
+	}
+
+	for (int i = 0; i < transportations.size(); i++)
+	{
+		SDL_RenderDrawRect(renderer, transportations[i].getRect());
 	}
 	
 	SDL_RenderPresent(renderer);

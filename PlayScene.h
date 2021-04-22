@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Block.h"
+#include "Transportation.h"
 
 class PlayScene : public Scene
 {
@@ -26,6 +27,8 @@ private:
 	Player player;
 	Enemy enemy;
 	std::vector<Block> blocks;
+	std::vector<Transportation> transportations;
 	bool movePlayer;
 	std::ifstream map;
+	int setInterrupt;
 };

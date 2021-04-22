@@ -54,7 +54,6 @@ void Player::update(float deltaTime)
 	y += vy * (double)deltaTime;
 	vy += dy * (double)deltaTime;
 
-	printf("%f\n", y);
 	/*if (y >= 128.f)
 	{
 		y = 128.f;
