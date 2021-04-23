@@ -89,13 +89,27 @@ void PlayScene::loadBlocks()
 		}
 	}
 
-	transportations.push_back(Transportation({ 256, 80, 16, 16 }, 304, 128, 1, false));
+	transportations.push_back(Transportation({ 272, 80, 16, 16 }, 304, 128, 1, false));
+	transportations.push_back(Transportation({ 688, 128, 16, 16 }, 672, 128, 0, false));
+	transportations.push_back(Transportation({ 288, 128, 16, 16 }, 304, 80, 1, false));
+	transportations.push_back(Transportation({ 416, 80, 16, 16 }, 528, 16, 1, false));
+	transportations.push_back(Transportation({ 688, 16, 16, 16 }, 0, 192, 1, false));
+	transportations.push_back(Transportation({ 832, 0, 16, 16 }, 832, 16, 0, false));
+	transportations.push_back(Transportation({ 704, 16, 16, 16 }, 0, 192, 1, false));
+	transportations.push_back(Transportation({ 704, 16, 16, 16 }, 0, 192, 1, false));
+	transportations.push_back(Transportation({ 1296, 144, 16, 16 }, 0, 192, 1, false));
+	transportations.push_back(Transportation({ 2128, 128, 16, 16 }, 0, 192, 1, false));
+	transportations.push_back(Transportation({ 3152, 80, 16, 16 }, 0, 192, 1, false));
+	transportations.push_back(Transportation({ 2544, 32, 16, 16 }, 0, 192, 1, false));
+
+
 	transportations.push_back(Transportation({ 832, 16, 16, 16 }, 1056, 0, 0, true));
 	transportations.push_back(Transportation({ 960, 80, 16, 16 }, 768, 64, 1, true));
 	transportations.push_back(Transportation({ 1280, 112, 16, 16 }, 1120, 144, 1, true));
+	transportations.push_back(Transportation({ 1408, 48, 16, 16 }, 1586, 128, 1, true));
 	transportations.push_back(Transportation({ 1696, 96, 16, 16 }, 1936, 80, 0, true));
 	transportations.push_back(Transportation({ 1872, 144, 16, 16 }, 1586, 128, 1, true));
-	transportations.push_back(Transportation({ 1872, 144, 16, 16 }, 1586, 128, 1, true));
+	transportations.push_back(Transportation({ 2560, 160, 16, 16 }, 2896, 32, 0, true));
 	transportations.push_back(Transportation({ 2752, 48, 16, 16 }, 2560, 32, 1, true));
 	transportations.push_back(Transportation({ 3072, 32, 16, 16 }, 3680, 80, 0, true));
 	transportations.push_back(Transportation({ 3328, 96, 16, 16 }, 3152, 80, 1, true));
