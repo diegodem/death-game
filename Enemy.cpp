@@ -38,3 +38,8 @@ void Enemy::setPosition(int x, int y, int direction)
 	this->y = (double)y;
 	this->direction = direction;
 }
+
+int Enemy::getDirection()
+{
+	return direction;
+}

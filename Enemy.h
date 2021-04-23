@@ -9,6 +9,7 @@ public:
 	double getX();
 	void update(float deltaTime);
 	void setPosition(int x, int y, int direction);
+	int getDirection();
 private:
 	double x, y;
 	int direction;

@@ -6,7 +6,7 @@ PlayScene::PlayScene(SDL_Renderer *renderer)
 	this->renderer = renderer;
 	loadMedia();
 	loadBlocks();
-	backgroundRect = { 0, 0, 1024, 192 };
+	backgroundRect = { 0, 0, 4096, 192 };
 	camera = Camera();
 	deltaTime.start();
 	setInterrupt = -1;
@@ -15,7 +15,7 @@ PlayScene::PlayScene(SDL_Renderer *renderer)
 bool PlayScene::loadMedia()
 {
 	bool success = false;
-	backgroundTexture = loadTexture("Sprites/test_background.png");
+	backgroundTexture = loadTexture("Sprites/background.png");
 	if (backgroundTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");
@@ -47,6 +47,19 @@ bool PlayScene::loadMedia()
 	}
 	blockTexture = loadTexture("Sprites/block2.png");
 	if (blockTexture == NULL)
+	{
+		printf("Failed to load texture image!\n");
+		success = false;
+	}
+
+	enemyTextures[0] = loadTexture("Sprites/death_2.png");
+	if (enemyTextures[0] == NULL)
+	{
+		printf("Failed to load texture image!\n");
+		success = false;
+	}
+	enemyTextures[1] = loadTexture("Sprites/death_1.png");
+	if (enemyTextures[1] == NULL)
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
@@ -248,20 +261,21 @@ void PlayScene::draw()
 	//SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 	SDL_RenderCopy(renderer, backgroundTexture, NULL, &backgroundRect);
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
-	SDL_RenderDrawRect(renderer, player.getRect());
-	SDL_RenderDrawRect(renderer, player.getFootRect());
-	SDL_RenderDrawRect(renderer, player.getBodyRect());
+	//SDL_RenderDrawRect(renderer, player.getRect());
+	//SDL_RenderDrawRect(renderer, player.getFootRect());
+	//SDL_RenderDrawRect(renderer, player.getBodyRect());
 	SDL_RenderCopy(renderer, playerTextures[player.getCurrentFrame()], NULL, player.getRect());
-	SDL_RenderDrawRect(renderer, enemy.getRect());
+	//SDL_RenderDrawRect(renderer, enemy.getRect());
+	SDL_RenderCopy(renderer, enemyTextures[enemy.getDirection()], NULL, enemy.getRect());
 	for (int i = 0; i < blocks.size(); i++)
 	{
-		SDL_RenderDrawRect(renderer, blocks[i].getRect());
-		//SDL_RenderCopy(renderer, blockTexture, NULL, blocks[i].getRect());
+		//SDL_RenderDrawRect(renderer, blocks[i].getRect());
+		SDL_RenderCopy(renderer, blockTexture, NULL, blocks[i].getRect());
 	}
 
 	for (int i = 0; i < transportations.size(); i++)
 	{
-		SDL_RenderDrawRect(renderer, transportations[i].getRect());
+		//SDL_RenderDrawRect(renderer, transportations[i].getRect());
 	}
 	
 	SDL_RenderPresent(renderer);

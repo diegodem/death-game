@@ -20,6 +20,7 @@ public:
 private:
 	SDL_Texture *backgroundTexture = NULL;
 	SDL_Texture *playerTextures[4] = { 0 };
+	SDL_Texture *enemyTextures[2] = { 0 };
 	SDL_Texture *blockTexture = NULL;
 	SDL_Rect backgroundRect;
 	Camera camera;
