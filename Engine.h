@@ -43,5 +43,5 @@ private:
 	SDL_Renderer *renderer = NULL;
 	Scene *currentScene = NULL;
 	Timer deltaTime;
-	//Mix_Music *music;
+	Mix_Music *music;
 };

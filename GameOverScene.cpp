@@ -10,7 +10,7 @@ GameOverScene::GameOverScene(SDL_Renderer *renderer)
 bool GameOverScene::loadMedia()
 {
 	bool success = false;
-	backgroundTexture = loadTexture("Sprites/background_title.png");
+	backgroundTexture = loadTexture("Sprites/background_gameover.png");
 	if (backgroundTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");

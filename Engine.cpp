@@ -56,6 +56,7 @@ void Engine::loadScene(SceneList scene)
 	}
 	else if (scene == SceneList::INTRO_SCENE)
 	{
+		Mix_PlayMusic(music, -1);
 		currentScene = new IntroScene(renderer);
 	}
 	else if (scene == SceneList::CONTROLS_SCENE)
@@ -64,14 +65,21 @@ void Engine::loadScene(SceneList scene)
 	}
 	else if (scene == SceneList::PLAY_SCENE)
 	{
+		if (!Mix_PlayingMusic())
+		{
+			Mix_PlayMusic(music, -1);
+		}
+		
 		currentScene = new PlayScene(renderer);
 	}
 	else if (scene == SceneList::GAME_OVER_SCENE)
 	{
+		Mix_HaltMusic();
 		currentScene = new GameOverScene(renderer);
 	}
 	else if (scene == SceneList::VICTORY_SCENE)
 	{
+		Mix_HaltMusic();
 		currentScene = new VictoryScene(renderer);
 	}
 	else if (scene == SceneList::CREDITS_SCENE)
@@ -132,8 +140,17 @@ bool Engine::init()
 			}
 		}
 	}
+	loadMusic();
 	deltaTime.start();
 	return success;
+}
+void Engine::loadMusic()
+{
+	music = Mix_LoadMUS("Music/music.wav");
+	if (music == NULL)
+	{
+		printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
+	}
 }
 
 void Engine::close()

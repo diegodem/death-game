@@ -25,11 +25,7 @@ void CreditsScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed,
 	{
 		if (keysPressed[i] == SDLK_SPACE)
 		{
-			nextScene = (int)SceneList::PLAY_SCENE;
-		}
-		if (keysPressed[i] == SDLK_c)
-		{
-			nextScene = (int)SceneList::PLAY_SCENE;
+			nextScene = (int)SceneList::TITLE_SCENE;
 		}
 	}
 }
