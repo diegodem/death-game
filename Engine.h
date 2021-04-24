@@ -15,6 +15,7 @@
 #include "Scene.h"
 #include "TitleScene.h"
 #include "PlayScene.h"
+#include "GameOverScene.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;

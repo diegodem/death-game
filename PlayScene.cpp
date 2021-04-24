@@ -89,6 +89,9 @@ bool PlayScene::loadMedia()
 		success = false;
 	}
 
+	//Load fonts
+	generalFont = TTF_OpenFont("Fonts/BerkshireSwash-Regular.ttf", 40);
+
 	return success;
 }
 
@@ -269,6 +272,12 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 				blocks[i].getRect()->x = (int)round(blocks[i].getX() - camera.getX());
 			}
 		}
+	}
+
+	if (checkCollision(enemy.getRect(), player.getBodyRect()))
+	{
+		nextScene = (int)SceneList::GAME_OVER_SCENE;
+		Mix_PlayChannel(-1, dieSound, 0);
 	}
 
 	for (int i = 0; i < transportations.size(); i++)
