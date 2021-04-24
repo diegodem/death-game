@@ -36,5 +36,6 @@ private:
 	Mix_Chunk *blockSound = NULL;
 	Mix_Chunk *dieSound = NULL;
 	TTF_Font *generalFont = NULL;
+	SDL_Rect victoryRect;
 
 };

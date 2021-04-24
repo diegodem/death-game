@@ -10,6 +10,7 @@ PlayScene::PlayScene(SDL_Renderer *renderer)
 	camera = Camera();
 	deltaTime.start();
 	setInterrupt = -1;
+	victoryRect = { 240, 80, 16, 32 };
 }
 
 bool PlayScene::loadMedia()
@@ -280,6 +281,11 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 		Mix_PlayChannel(-1, dieSound, 0);
 	}
 
+	if (checkCollision(&victoryRect, player.getBodyRect()))
+	{
+		nextScene = (int)SceneList::VICTORY_SCENE;
+	}
+
 	for (int i = 0; i < transportations.size(); i++)
 	{
 		transportations[i].getRect()->x = (int)(transportations[i].getX() - camera.getX());
@@ -295,14 +301,14 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 
 void PlayScene::draw()
 {
-	SDL_SetRenderDrawColor(renderer, 0x88, 0x88, 0x88, 0xFF);
+	//SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
 	SDL_RenderClear(renderer);
 	//SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 	SDL_RenderCopy(renderer, backgroundTexture, NULL, &backgroundRect);
-	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
+	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	//SDL_RenderDrawRect(renderer, player.getRect());
 	//SDL_RenderDrawRect(renderer, player.getFootRect());
-	//SDL_RenderDrawRect(renderer, player.getBodyRect());
+	//SDL_RenderDrawRect(renderer, &victoryRect);
 	SDL_RenderCopy(renderer, playerTextures[player.getCurrentFrame()], NULL, player.getRect());
 	//SDL_RenderDrawRect(renderer, enemy.getRect());
 	SDL_RenderCopy(renderer, enemyTextures[enemy.getDirection()], NULL, enemy.getRect());

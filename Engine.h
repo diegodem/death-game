@@ -14,8 +14,12 @@
 #include "SceneList.h"
 #include "Scene.h"
 #include "TitleScene.h"
+#include "IntroScene.h"
+#include "ControlsScene.h"
 #include "PlayScene.h"
 #include "GameOverScene.h"
+#include "VictoryScene.h"
+#include "CreditsScene.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
@@ -31,6 +35,7 @@ public:
 	void close();
 	void loadScene(SceneList scene);
 	void loop();
+	void loadMusic();
 
 private:
 	bool initSuccess;
@@ -38,4 +43,5 @@ private:
 	SDL_Renderer *renderer = NULL;
 	Scene *currentScene = NULL;
 	Timer deltaTime;
+	//Mix_Music *music;
 };

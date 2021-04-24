@@ -29,7 +29,7 @@ void GameOverScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed
 		}
 		if (keysPressed[i] == SDLK_c)
 		{
-			nextScene = (int)SceneList::PLAY_SCENE;
+			nextScene = (int)SceneList::CREDITS_SCENE;
 		}
 	}
 }

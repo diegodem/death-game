@@ -54,6 +54,14 @@ void Engine::loadScene(SceneList scene)
 	{
 		currentScene = new TitleScene(renderer);
 	}
+	else if (scene == SceneList::INTRO_SCENE)
+	{
+		currentScene = new IntroScene(renderer);
+	}
+	else if (scene == SceneList::CONTROLS_SCENE)
+	{
+		currentScene = new ControlsScene(renderer);
+	}
 	else if (scene == SceneList::PLAY_SCENE)
 	{
 		currentScene = new PlayScene(renderer);
@@ -61,6 +69,14 @@ void Engine::loadScene(SceneList scene)
 	else if (scene == SceneList::GAME_OVER_SCENE)
 	{
 		currentScene = new GameOverScene(renderer);
+	}
+	else if (scene == SceneList::VICTORY_SCENE)
+	{
+		currentScene = new VictoryScene(renderer);
+	}
+	else if (scene == SceneList::CREDITS_SCENE)
+	{
+		currentScene = new CreditsScene(renderer);
 	}
 }
 
