@@ -275,7 +275,7 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 	if (checkCollision(enemy.getRect(), player.getBodyRect()))
 	{
 		nextScene = (int)SceneList::GAME_OVER_SCENE;
-		Mix_PlayChannel(-1, dieSound, 0);
+		//Mix_PlayChannel(-1, dieSound, 0);
 	}
 
 	if (checkCollision(&victoryRect, player.getBodyRect()))

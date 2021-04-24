@@ -74,6 +74,7 @@ void Engine::loadScene(SceneList scene)
 	}
 	else if (scene == SceneList::GAME_OVER_SCENE)
 	{
+		Mix_PlayChannel(-1, dieSound, 0);
 		Mix_HaltMusic();
 		currentScene = new GameOverScene(renderer);
 	}
@@ -150,6 +151,12 @@ void Engine::loadMusic()
 	if (music == NULL)
 	{
 		printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
+	}
+
+	dieSound = Mix_LoadWAV("Sounds/die.wav");
+	if (dieSound == NULL)
+	{
+		printf("Failed to load change sound effect! SDL_mixer Error: %s\n", Mix_GetError());
 	}
 }
 

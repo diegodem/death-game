@@ -44,4 +44,5 @@ private:
 	Scene *currentScene = NULL;
 	Timer deltaTime;
 	Mix_Music *music;
+	Mix_Chunk *dieSound = NULL;
 };
