@@ -17,50 +17,50 @@ bool PlayScene::loadMedia()
 {
 	// load textures
 	bool success = false;
-	backgroundTexture = loadTexture("Sprites/background.png");
+	backgroundTexture = loadTexture("Sprites/background.spr");
 	if (backgroundTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
-	playerTextures[0] = loadTexture("Sprites/player_1.png");
+	playerTextures[0] = loadTexture("Sprites/player_1.spr");
 	if (playerTextures[0] == NULL)
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
-	playerTextures[1] = loadTexture("Sprites/player_2.png");
+	playerTextures[1] = loadTexture("Sprites/player_2.spr");
 	if (playerTextures[1] == NULL)
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
-	playerTextures[2] = loadTexture("Sprites/player_3.png");
+	playerTextures[2] = loadTexture("Sprites/player_3.spr");
 	if (playerTextures[2] == NULL)
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
-	playerTextures[3] = loadTexture("Sprites/player_4.png");
+	playerTextures[3] = loadTexture("Sprites/player_4.spr");
 	if (playerTextures[3] == NULL)
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
-	blockTexture = loadTexture("Sprites/block5.png");
+	blockTexture = loadTexture("Sprites/block5.spr");
 	if (blockTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
 
-	enemyTextures[0] = loadTexture("Sprites/death_2.png");
+	enemyTextures[0] = loadTexture("Sprites/death_2.spr");
 	if (enemyTextures[0] == NULL)
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
-	enemyTextures[1] = loadTexture("Sprites/death_1.png");
+	enemyTextures[1] = loadTexture("Sprites/death_1.spr");
 	if (enemyTextures[1] == NULL)
 	{
 		printf("Failed to load texture image!\n");

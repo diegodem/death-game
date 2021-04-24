@@ -10,7 +10,7 @@ CreditsScene::CreditsScene(SDL_Renderer *renderer)
 bool CreditsScene::loadMedia()
 {
 	bool success = false;
-	backgroundTexture = loadTexture("Sprites/background_credits.png");
+	backgroundTexture = loadTexture("Sprites/background_credits.spr");
 	if (backgroundTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");

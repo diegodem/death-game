@@ -10,7 +10,7 @@ ControlsScene::ControlsScene(SDL_Renderer *renderer)
 bool ControlsScene::loadMedia()
 {
 	bool success = false;
-	backgroundTexture = loadTexture("Sprites/background_controls.png");
+	backgroundTexture = loadTexture("Sprites/background_controls.spr");
 	if (backgroundTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");

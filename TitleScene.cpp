@@ -10,7 +10,7 @@ TitleScene::TitleScene(SDL_Renderer *renderer)
 bool TitleScene::loadMedia()
 {
 	bool success = false;
-	backgroundTexture = loadTexture("Sprites/background_title.png");
+	backgroundTexture = loadTexture("Sprites/background_title.spr");
 	if (backgroundTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");

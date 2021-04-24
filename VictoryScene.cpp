@@ -10,7 +10,7 @@ VictoryScene::VictoryScene(SDL_Renderer *renderer)
 bool VictoryScene::loadMedia()
 {
 	bool success = false;
-	backgroundTexture = loadTexture("Sprites/background_victory.png");
+	backgroundTexture = loadTexture("Sprites/background_victory.spr");
 	if (backgroundTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");

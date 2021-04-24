@@ -10,7 +10,7 @@ IntroScene::IntroScene(SDL_Renderer *renderer)
 bool IntroScene::loadMedia()
 {
 	bool success = false;
-	backgroundTexture = loadTexture("Sprites/background_intro.png");
+	backgroundTexture = loadTexture("Sprites/background_intro.spr");
 	if (backgroundTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");
