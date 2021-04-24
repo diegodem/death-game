@@ -32,4 +32,8 @@ private:
 	bool movePlayer;
 	std::ifstream map;
 	int setInterrupt;
+	Mix_Chunk *jumpSound = NULL;
+	Mix_Chunk *blockSound = NULL;
+	Mix_Chunk *dieSound = NULL;
+
 };

@@ -14,6 +14,7 @@ PlayScene::PlayScene(SDL_Renderer *renderer)
 
 bool PlayScene::loadMedia()
 {
+	// load textures
 	bool success = false;
 	backgroundTexture = loadTexture("Sprites/background.png");
 	if (backgroundTexture == NULL)
@@ -45,7 +46,7 @@ bool PlayScene::loadMedia()
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
-	blockTexture = loadTexture("Sprites/block2.png");
+	blockTexture = loadTexture("Sprites/block5.png");
 	if (blockTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");
@@ -62,6 +63,29 @@ bool PlayScene::loadMedia()
 	if (enemyTextures[1] == NULL)
 	{
 		printf("Failed to load texture image!\n");
+		success = false;
+	}
+
+	// load sounds
+
+	jumpSound = Mix_LoadWAV("Sounds/jump.wav");
+	if (jumpSound == NULL)
+	{
+		printf("Failed to load change sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
+	blockSound = Mix_LoadWAV("Sounds/block.wav");
+	if (blockSound == NULL)
+	{
+		printf("Failed to load change sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
+	dieSound = Mix_LoadWAV("Sounds/die.wav");
+	if (dieSound == NULL)
+	{
+		printf("Failed to load change sound effect! SDL_mixer Error: %s\n", Mix_GetError());
 		success = false;
 	}
 
@@ -137,7 +161,10 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 	{
 		if (keysPressed[i] == SDLK_SPACE)
 		{
-			player.jump();
+			if (player.jump())
+			{
+				Mix_PlayChannel(-1, jumpSound, 0);
+			}
 		}
 
 	}
@@ -220,7 +247,10 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 		}
 		if (checkCollision(player.getBodyRect(), blocks[i].getRect()))
 		{
-			player.setWall((int)blocks[i].getX(), (int)blocks[i].getY());
+			if (player.setWall((int)blocks[i].getX(), (int)blocks[i].getY()))
+			{
+				Mix_PlayChannel(-1, blockSound, 0);
+			}
 			camera.setPos(player.getX());
 
 			enemy.getRect()->x = (int)round(enemy.getX() - camera.getX());

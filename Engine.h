@@ -37,6 +37,4 @@ private:
 	SDL_Renderer *renderer = NULL;
 	Scene *currentScene = NULL;
 	Timer deltaTime;
-	TitleScene titleScene;
-	PlayScene playScene;
 };

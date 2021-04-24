@@ -84,14 +84,17 @@ void Player::update(float deltaTime)
 	
 }
 
-void Player::jump()
+bool Player::jump()
 {
 	if (isFloor)
 	{
 		y -= 1;
 		vy = -200;
 		isFloor = false;
+		return true;
 	}
+
+	return false;
 }
 
 void Player::setFloor(int y)
@@ -104,7 +107,7 @@ void Player::setFloor(int y)
 	isFloor = true;
 }
 
-void Player::setWall(int x, int y)
+bool Player::setWall(int x, int y)
 {
 	if (x > this->x + 10)
 	{
@@ -117,12 +120,14 @@ void Player::setWall(int x, int y)
 		setCurrentFrame(2);
 		frameTimer.start();
 	}
-
 	else
 	{
 		vy = 0;
 		this->y = y + 16.;
+		return true;
 	}
+
+	return false;
 }
 
 int Player::getCurrentFrame()

@@ -15,9 +15,9 @@ public:
 	double getX();
 	double getY();
 	void update(float deltaTime);
-	void jump();
+	bool jump();
 	void setFloor(int y);
-	void setWall(int x, int y);
+	bool setWall(int x, int y);
 	int getCurrentFrame();
 	void setCurrentFrame(int currentFrame);
 	Timer *getFrameTimer();

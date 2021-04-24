@@ -47,17 +47,16 @@ void Engine::loadScene(SceneList scene)
 	if (currentScene != NULL)
 	{
 		currentScene->close();
+		free(currentScene);
 	}
 
 	if (scene == SceneList::TITLE_SCENE)
 	{
-		titleScene = TitleScene(renderer);
-		currentScene = &titleScene;
+		currentScene = new TitleScene(renderer);
 	}
 	else if (scene == SceneList::PLAY_SCENE)
 	{
-		playScene = PlayScene(renderer);
-		currentScene = &playScene;
+		currentScene = new PlayScene(renderer);
 	}
 }
 
