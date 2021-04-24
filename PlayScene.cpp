@@ -11,6 +11,7 @@ PlayScene::PlayScene(SDL_Renderer *renderer)
 	deltaTime.start();
 	setInterrupt = -1;
 	victoryRect = { 240, 80, 16, 32 };
+	secretRect = { 0, 80, 16, 32 };
 }
 
 bool PlayScene::loadMedia()
@@ -281,6 +282,11 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 	if (checkCollision(&victoryRect, player.getBodyRect()))
 	{
 		nextScene = (int)SceneList::VICTORY_SCENE;
+	}
+
+	if (checkCollision(&secretRect, player.getBodyRect()))
+	{
+		nextScene = (int)SceneList::SECRET_SCENE;
 	}
 
 	for (int i = 0; i < transportations.size(); i++)

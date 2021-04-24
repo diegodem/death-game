@@ -87,6 +87,11 @@ void Engine::loadScene(SceneList scene)
 	{
 		currentScene = new CreditsScene(renderer);
 	}
+	else if (scene == SceneList::SECRET_SCENE)
+	{
+		Mix_HaltMusic();
+		currentScene = new SecretScene(renderer);
+	}
 }
 
 bool Engine::init()

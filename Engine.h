@@ -20,6 +20,7 @@
 #include "GameOverScene.h"
 #include "VictoryScene.h"
 #include "CreditsScene.h"
+#include "SecretScene.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
