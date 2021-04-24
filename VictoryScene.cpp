@@ -45,4 +45,5 @@ void VictoryScene::draw()
 void VictoryScene::close()
 {
 	SDL_DestroyTexture(backgroundTexture);
+	backgroundTexture = NULL;
 }

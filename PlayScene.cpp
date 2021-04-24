@@ -90,9 +90,6 @@ bool PlayScene::loadMedia()
 		success = false;
 	}
 
-	//Load fonts
-	generalFont = TTF_OpenFont("Fonts/BerkshireSwash-Regular.ttf", 40);
-
 	return success;
 }
 
@@ -329,6 +326,33 @@ void PlayScene::draw()
 void PlayScene::close()
 {
 	SDL_DestroyTexture(backgroundTexture);
+	backgroundTexture = NULL;
+
+	SDL_DestroyTexture(blockTexture);
+	blockTexture = NULL;
+
+	for (int i = 0; i < 4; i++)
+	{
+		SDL_DestroyTexture(playerTextures[i]);
+		playerTextures[i] = NULL;
+	}
+
+	for (int i = 0; i < 2; i++)
+	{
+		SDL_DestroyTexture(enemyTextures[i]);
+		enemyTextures[i] = NULL;
+	}
+
+	Mix_FreeChunk(jumpSound);
+	jumpSound = NULL;
+
+	Mix_FreeChunk(blockSound);
+	blockSound = NULL;
+
+	Mix_FreeChunk(dieSound);
+	dieSound = NULL;
+
+
 }
 
 bool PlayScene::checkCollision(SDL_Rect *rectA, SDL_Rect *rectB)

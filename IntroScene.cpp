@@ -41,4 +41,5 @@ void IntroScene::draw()
 void IntroScene::close()
 {
 	SDL_DestroyTexture(backgroundTexture);
+	backgroundTexture = NULL;
 }

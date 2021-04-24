@@ -41,4 +41,5 @@ void ControlsScene::draw()
 void ControlsScene::close()
 {
 	SDL_DestroyTexture(backgroundTexture);
+	backgroundTexture = NULL;
 }

@@ -160,6 +160,9 @@ void Engine::close()
 	renderer = NULL;
 	window = NULL;
 
+	Mix_FreeMusic(music);
+	music = NULL;
+
 	Mix_Quit();
 	TTF_Quit();
 	IMG_Quit();

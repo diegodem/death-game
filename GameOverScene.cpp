@@ -45,4 +45,5 @@ void GameOverScene::draw()
 void GameOverScene::close()
 {
 	SDL_DestroyTexture(backgroundTexture);
+	backgroundTexture = NULL;
 }

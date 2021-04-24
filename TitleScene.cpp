@@ -45,4 +45,5 @@ void TitleScene::draw()
 void TitleScene::close()
 {
 	SDL_DestroyTexture(backgroundTexture);
+	backgroundTexture = NULL;
 }

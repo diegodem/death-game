@@ -41,4 +41,5 @@ void CreditsScene::draw()
 void CreditsScene::close()
 {
 	SDL_DestroyTexture(backgroundTexture);
+	backgroundTexture = NULL;
 }
