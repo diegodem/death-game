@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <Windows.h>
 #include "SceneList.h"
 #include "Timer.h"
 #include <iostream>

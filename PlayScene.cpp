@@ -220,6 +220,7 @@ void PlayScene::update(Timer deltaTime, std::vector<SDL_Keycode> keysPressed, co
 			player.setCurrentFrame(0);
 		}
 	}
+	
 
 	player.update(deltaTime.getTime());
 
